@@ -5,6 +5,8 @@ import matter from 'gray-matter';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 
+import { sortByDate } from '../utils/index.js';
+
 export default function HomePage({ posts }) {
   return (
     <Layout>
@@ -46,7 +48,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts,
+      posts: posts.sort((a, b) => sortByDate(a, b)).slice(0, 6),
     },
   };
 }
